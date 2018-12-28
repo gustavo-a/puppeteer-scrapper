@@ -61,3 +61,5 @@ typings/
 .next
 
 cookies.js
+test.js
+output/
