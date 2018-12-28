@@ -28,7 +28,7 @@ const regexMail = /[^\s@]+@[^\s@]+\.[^\s@]+/,
               obj = await JSON.parse(content);
 
         //variable to manipulate the array later without interfering on the for loop
-        let obj2 = await JSON.parse(content), 
+        let obj2 = await JSON.parse(content);
 
         await fs.readFile("./output/profilesList.csv", "utf8", async (err, data) => {
             if (err) await fs.writeFile("./output/profilesList.csv", "nome,link,email,telefone,nasc,linkedin,instagram,twitter\n");
