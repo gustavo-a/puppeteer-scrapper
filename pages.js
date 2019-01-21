@@ -11,6 +11,12 @@ const regexMail = /[^\s@]+@[^\s@]+\.[^\s@]+/,
       regexInstagram = /https%3A%2F%2Finstagram\.com%2F[^%]+/,
       regexTwitter = /https%3A%2F%2Ftwitter\.com%2F[^%]+/;
 
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+
 (async function main() {
 
     try {
@@ -20,7 +26,7 @@ const regexMail = /[^\s@]+@[^\s@]+\.[^\s@]+/,
               page = await browser.newPage();
 
         //use your actual User Agent so Facebook won't trigger any authentication issues
-        page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 OPR/57.0.3098.106");
+        page.setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 OPR/57.0.3098.106");
 
         await page.setCookie(...cookies);
 
@@ -50,9 +56,10 @@ const regexMail = /[^\s@]+@[^\s@]+\.[^\s@]+/,
             await new Promise((resolve, reject) => {
                 setTimeout(async () => {
                     await page.goto(url);
+                    console.log(`Scrapping profile ${i + 1} of ${obj.length + 1}`)
                     resolve();
-                }, 5000);
-            })
+                }, getRandomInt(10000, 60000));
+            }).catch( error => console.log("setTimeout", error ) )
 
             await page.waitForSelector("#pagelet_contact");
 

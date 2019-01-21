@@ -63,3 +63,4 @@ typings/
 cookies.js
 test.js
 output/
+.DS_Store
